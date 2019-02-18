@@ -7,9 +7,22 @@ namespace CGL
 {
   void BezierCurve::evaluateStep()
   {
-    // TODO Part 1.
+    //Part 1.
     // Perform one step of the Bezier curve's evaluation at t using de Casteljau's algorithm for subdivision.
     // Store all of the intermediate control points into the 2D vector evaluatedLevels.
+    int levels = evaluatedLevels.size();
+    vector<Vector2D> most_recent_points = evaluatedLevels[levels - 1];
+    if (most_recent_points.size() == 1) { //check the most recent levels, if there's only one control points, then we're done
+        return;
+    } else {
+        vector<Vector2D> new_points;
+        for (int i = 0; i < most_recent_points.size() - 1; i++) {
+            Vector2D p1 = most_recent_points[i];
+            Vector2D p2 = most_recent_points[i + 1];
+            new_points.push_back(Vector2D((1 - t) * p1 + t * p2));
+        }
+        evaluatedLevels.push_back(new_points);
+    }
     return;
   }
 
@@ -20,7 +33,14 @@ namespace CGL
     // Evaluate the Bezier surface at parameters (u, v) through 2D de Casteljau subdivision.
     // (i.e. Unlike Part 1 where we performed one subdivision level per call to evaluateStep, this function
     // should apply de Casteljau's algorithm until it computes the final, evaluated point on the surface)
-    return Vector3D();
+
+    vector<Vector3D> curves;
+
+    for (int i = 0; i < controlPoints.size(); i++) { //deal with 1D de Casteljau first.
+        curves.push_back(evaluate1D(controlPoints[i], u));
+    }
+
+    return evaluate1D(curves, v);
   }
 
   Vector3D BezierPatch::evaluate1D(std::vector<Vector3D> points, double t) const
@@ -28,7 +48,22 @@ namespace CGL
     // TODO Part 2.
     // Optional helper function that you might find useful to implement as an abstraction when implementing BezierPatch::evaluate.
     // Given an array of 4 points that lie on a single curve, evaluates the Bezier curve at parameter t using 1D de Casteljau subdivision.
-    return Vector3D();
+    vector<Vector3D> temp1; //3 points
+    vector<Vector3D> temp2; //2 points
+
+    for (int i = 0; i < points.size() - 1; i++) {
+        Vector3D p1 = points[i];
+        Vector3D p2 = points[i + 1];
+        temp1.push_back(Vector3D((1 - t) * p1 + t * p2));
+    }
+
+  for (int i = 0; i < temp1.size() - 1; i++) {
+      Vector3D p1 = temp1[i];
+      Vector3D p2 = temp1[i + 1];
+      temp2.push_back(Vector3D((1 - t) * p1 + t * p2));
+  }
+
+  return Vector3D((1 - t) * temp2[0] + t * temp2[1]);
  }
 
 

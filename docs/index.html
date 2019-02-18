@@ -1,6 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <head/>
 <style>
   body {
     padding: 100px;
@@ -38,31 +40,52 @@
 
 <h3 align="middle">Part 1: Bezier curves with 1D de Casteljau subdivision</h3>
 
-<p>Here is an example 2x2 gridlike structure using an HTML table. Each <b>tr</b> is a row and each <b>td</b> is a column in that row. You might find this useful for framing and showing your result images in an organized fashion.</p>
+  <p>
+    de Casteljau's algorithm is an recursive algorithm to compute Bézier Curve. It takes control points as input, and
+    recursively compute the next level control points until there is only one point left, using linear interpolation \((P_{new} = (1-t) * P_0 + t * P_1)\)
+    between two points. By change the value, t, to interpolate, the final point p will also be change, and the trajectory
+    of p is the Bézier Curve we want to compute.
+  </p>
 
 <div align="middle">
   <table style="width=100%">
     <tr>
       <td>
-        <img src="images/image1.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
+        <img src="images/p1_l0.png" align="middle" width="400px"/>
+        <figcaption align="middle">Step 0</figcaption>
       </td>
       <td>
-        <img src="images/image2.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
+        <img src="images/p1_l1.png" align="middle" width="400px"/>
+        <figcaption align="middle">Step 1.</figcaption>
       </td>
     </tr>
     <br>
     <tr>
       <td>
-        <img src="images/image3.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
+        <img src="images/p1_l2.png" align="middle" width="400px"/>
+        <figcaption align="middle">Step 2.</figcaption>
       </td>
       <td>
-        <img src="images/image4.png" align="middle" width="400px"/>
-        <figcaption align="middle">Caption goes here.</figcaption>
+        <img src="images/p1_l3.png" align="middle" width="400px"/>
+        <figcaption align="middle">Step 3.</figcaption>
       </td>
     </tr>
+    <tr>
+      <td>
+        <img src="images/p1_l4.png" align="middle" width="400px"/>
+        <figcaption align="middle">Step 4.</figcaption>
+      </td>
+      <td>
+        <img src="images/p1_l5.png" align="middle" width="400px"/>
+        <figcaption align="middle">Step 5.</figcaption>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img src="images/p1_changed.png" align="middle" width="400px"/>
+        <figcaption align="middle">Changed points and t.</figcaption>
+      </td>
+    <tr/>
   </table>
 </div>
 
