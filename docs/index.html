@@ -129,6 +129,31 @@
 
 
 <h3 align="middle">Part 4: Half-edge flip</h3>
+    <p>
+      In order to keep things simple and clean, I name and label every elements with different names that we need change their pointers,
+       as the diagram shows. (source: http://15462.courses.cs.cmu.edu/fall2015content/misc/HalfedgeEdgeOpImplementationGuide.pdf)
+      The benefits of labeling all the elements enable us to quickly link between the diagram we draw and the code we write, therefore make few bugs and
+      more easily to debug. Then, there are three new elements we want to add when we flip the edges, which are two new faces
+      and a new edge. By looking at the differences, we can easily assign the value for each pointers.
+    </p>
+    <div align="middle">
+      <img src="images/diagram.png" align="middle" width="800px"/>
+      <div/>
+
+      <p>
+        Notice that it is important to pay attention the orientation of new half edges. For example, if we define the direction
+        of h0 to the left instead to the right in the after flip diagram, then the direction of outside half edges will also
+        be changed (h7 and h8), causing extra unnecessary work to take care of them. Also, it is important to handle the outside
+        half edges correctly. While it doesn't seem to matter if we only flip one or two edges, if we didn't handle the outside
+        half edges correctly, we will get catastrophic result once we flip many edges.
+      </p>
+      
+    <div align="middle">
+      <img src="images/before_flip.png" align="middle" width="800px"/>
+      <figcaption align="middle">Before edges been flipped.</figcaption>
+      <img src="images/after_flip.png" align="middle" width="800px"/>
+      <figcaption align="middle">After edges been flipped.</figcaption>
+      <div/>
 
 
 <h3 align="middle">Part 5: Half-edge split</h3>
