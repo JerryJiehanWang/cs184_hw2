@@ -52,38 +52,38 @@
     <tr>
       <td>
         <img src="images/p1_l0.png" align="middle" width="400px"/>
-        <figcaption align="middle">Step 0</figcaption>
+        <figcaption align="middle"><i>Step 0</i></figcaption>
       </td>
       <td>
         <img src="images/p1_l1.png" align="middle" width="400px"/>
-        <figcaption align="middle">Step 1.</figcaption>
+        <figcaption align="middle"><i>Step 1.</i></figcaption>
       </td>
     </tr>
     <br>
     <tr>
       <td>
         <img src="images/p1_l2.png" align="middle" width="400px"/>
-        <figcaption align="middle">Step 2.</figcaption>
+        <figcaption align="middle"><i>Step 2.</i></figcaption>
       </td>
       <td>
         <img src="images/p1_l3.png" align="middle" width="400px"/>
-        <figcaption align="middle">Step 3.</figcaption>
+        <figcaption align="middle"><i>Step 3.</i></figcaption>
       </td>
     </tr>
     <tr>
       <td>
         <img src="images/p1_l4.png" align="middle" width="400px"/>
-        <figcaption align="middle">Step 4.</figcaption>
+        <figcaption align="middle"><i>Step 4.</i></figcaption>
       </td>
       <td>
         <img src="images/p1_l5.png" align="middle" width="400px"/>
-        <figcaption align="middle">Step 5.</figcaption>
+        <figcaption align="middle"><i>Step 5.</i></figcaption>
       </td>
     </tr>
     <tr>
       <td>
         <img src="images/p1_changed.png" align="middle" width="400px"/>
-        <figcaption align="middle">Changed points and t.</figcaption>
+        <figcaption align="middle"><i>Changed points and t.</i></figcaption>
       </td>
     <tr/>
   </table>
@@ -122,16 +122,16 @@
     </p>
   <div align="middle">
   <img src="images/default.png" align="middle" width="800px"/>
-  <figcaption align="middle">Default OpenGL shading.</figcaption>
+    <figcaption align="middle"><i>Default OpenGL shading.</i></figcaption>
   <img src="images/smoothed.png" align="middle" width="800px"/>
-  <figcaption align="middle">smoothed normals.</figcaption>
+    <figcaption align="middle"><i>smoothed normals.</i></figcaption>
     <div/>
 
 
 <h3 align="middle">Part 4: Half-edge flip</h3>
     <p>
       In order to keep things simple and clean, I name and label every elements with different names that we need change their pointers,
-       as the diagram shows. (source: http://15462.courses.cs.cmu.edu/fall2015content/misc/HalfedgeEdgeOpImplementationGuide.pdf)
+       as the diagram shows. (source: <a href="http://15462.courses.cs.cmu.edu/fall2015content/misc/HalfedgeEdgeOpImplementationGuide.pdf">Click Here.</a>)
       The benefits of labeling all the elements enable us to quickly link between the diagram we draw and the code we write, therefore make few bugs and
       more easily to debug. Then, there are three new elements we want to add when we flip the edges, which are two new faces
       and a new edge. By looking at the differences, we can easily assign the value for each pointers.
@@ -147,16 +147,55 @@
         half edges correctly. While it doesn't seem to matter if we only flip one or two edges, if we didn't handle the outside
         half edges correctly, we will get catastrophic result once we flip many edges.
       </p>
-      
+
     <div align="middle">
       <img src="images/before_flip.png" align="middle" width="800px"/>
-      <figcaption align="middle">Before edges been flipped.</figcaption>
+      <figcaption align="middle"><i>Before edges been flipped.</i></figcaption>
       <img src="images/after_flip.png" align="middle" width="800px"/>
-      <figcaption align="middle">After edges been flipped.</figcaption>
+      <figcaption align="middle"><i>After edges been flipped.</i></figcaption>
       <div/>
 
 
 <h3 align="middle">Part 5: Half-edge split</h3>
+      <p>
+        This part is similar to part 4, except we need to keep create new elements (3 edges, 2 faces, 1 vertex
+        and 6 half edges.) and keep track of more things. Therefore, I labeled all elements to make it easier
+        to keep track of them and debug, as illustrated below. There's no special tricks about debugging or implementing. You just
+        need to be super careful when assigning pointers, because there are so many elements.
+      </p>
+      <div align="middle">
+        <img src="images/split.jpeg" align="middle" width="800px"/>
+        <figcaption align="middle"><i>Notations of all elements.</i></figcaption>
+        </div>
+      <br>
+        <p>
+          Also notice that in order to keep as few changed elements as possible, for the illustration of after
+          splitting, I first label all the elements that remain unchanged, and then based on those elements(labeled
+          in blue), label the changed elements accordingly (the direction of half edges, etc.)
+        </p>
+        <p>
+          As fore debugging, since I label all the elements, it is relatively easier for me, except one time I forgot
+          assign half edges for newly created edges, which the program crashes with segmentation fault.
+        </p>
+
+        <div align="middle">
+        <table style="width=100%">
+          <tr>
+              <img src="images/before_split.png" align="middle" width="800px"/>
+            <figcaption align="middle"><i>Before edge splits</i></figcaption>
+          </tr>
+          <tr>
+              <img src="images/split.png" align="middle" width="800px"/>
+            <figcaption align="middle"><i>Some edges splits.</i></figcaption>
+          </tr>
+            <tr>
+              <img src="images/split_and_flip.png" align="middle" width="800px"/>
+              <figcaption align="middle"><i>Edges splits and flip.</i></figcaption>
+            </tr>
+          </tr>
+        </table>
+    </div>
+
 
 
 <h3 align="middle">Part 6: Loop subdivision for mesh upsampling</h3>
