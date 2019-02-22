@@ -16,9 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b81cce3b-d7f9-42f7-b069-20021bf5740a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/docs/images/Screen Shot 2019-02-14 at 10.46.00 PM.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/student_code.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/student_code.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/student_code.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/student_code.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,7 +41,7 @@
         <counts>
           <entry key="bzc" value="1" />
           <entry key="cpp" value="3" />
-          <entry key="h" value="3" />
+          <entry key="h" value="4" />
           <entry key="html" value="1" />
           <entry key="txt" value="1" />
           <entry key="vector" value="1" />
@@ -51,22 +50,23 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="HTML" value="1" />
-          <entry key="ObjectiveC" value="7" />
+          <entry key="ObjectiveC" value="8" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="5929" />
-          <entry key="html" value="5155" />
+          <entry key="cpp" value="8330" />
+          <entry key="h" value="48" />
+          <entry key="html" value="5208" />
           <entry key="txt" value="33" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="5155" />
-          <entry key="ObjectiveC" value="5929" />
+          <entry key="HTML" value="5208" />
+          <entry key="ObjectiveC" value="8378" />
           <entry key="Scratch" value="33" />
         </counts>
       </usages-collector>
@@ -74,20 +74,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="166" column="66" lean-forward="true" selection-start-line="166" selection-start-column="66" selection-end-line="166" selection-end-column="66" />
+            <state relative-caret-position="1142">
+              <caret line="54" column="48" selection-start-line="54" selection-start-column="48" selection-end-line="54" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/student_code.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="217" column="47" selection-start-line="217" selection-start-column="47" selection-end-line="217" selection-end-column="47" />
+            <state relative-caret-position="629">
+              <caret line="405" column="6" selection-start-line="405" selection-start-column="6" selection-end-line="405" selection-end-column="6" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -96,10 +96,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/student_code.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/halfEdgeMesh.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-239">
-              <caret line="568" column="21" selection-start-line="568" selection-start-column="15" selection-end-line="568" selection-end-column="21" />
+            <state relative-caret-position="3115">
+              <caret line="688" column="34" selection-start-line="688" selection-start-column="34" selection-end-line="688" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -108,7 +117,7 @@
         <entry file="file://$PROJECT_DIR$/src/halfEdgeMesh.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="301">
-              <caret line="425" column="77" selection-start-line="425" selection-start-column="67" selection-end-line="425" selection-end-column="77" />
+              <caret line="259" column="59" selection-start-line="259" selection-start-column="59" selection-end-line="259" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -137,8 +146,13 @@
       <find>boundary</find>
       <find>virtual</find>
       <find>isBoundary</find>
-      <find>boundaries</find>
       <find>bounda</find>
+      <find>boundaries</find>
+      <find>newPo</find>
+      <find>isNew</find>
+      <find>Edge::</find>
+      <find>comput</find>
+      <find>computeCen</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -148,8 +162,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
-        <option value="$PROJECT_DIR$/src/student_code.cpp" />
         <option value="$PROJECT_DIR$/docs/index.html" />
+        <option value="$PROJECT_DIR$/src/student_code.h" />
+        <option value="$PROJECT_DIR$/src/student_code.cpp" />
       </list>
     </option>
   </component>
@@ -266,18 +281,18 @@
       <option name="presentableId" value="Default" />
       <updated>1550187716241</updated>
       <workItem from="1550187717748" duration="1459000" />
-      <workItem from="1550189426136" duration="25805000" />
+      <workItem from="1550189426136" duration="33917000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27264000" />
+    <option name="totallyTimeSpent" value="35376000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25274727" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25274727" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" weight="0.32970297" />
@@ -341,34 +356,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1142">
+          <caret line="54" column="48" selection-start-line="54" selection-start-column="48" selection-end-line="54" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/halfEdgeMesh.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
-          <caret line="425" column="77" selection-start-line="425" selection-start-column="67" selection-end-line="425" selection-end-column="77" />
+          <caret line="259" column="59" selection-start-line="259" selection-start-column="59" selection-end-line="259" selection-end-column="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/halfEdgeMesh.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-239">
-          <caret line="568" column="21" selection-start-line="568" selection-start-column="15" selection-end-line="568" selection-end-column="21" />
+        <state relative-caret-position="3115">
+          <caret line="688" column="34" selection-start-line="688" selection-start-column="34" selection-end-line="688" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/student_code.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/student_code.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="217" column="47" selection-start-line="217" selection-start-column="47" selection-end-line="217" selection-end-column="47" />
+        <state relative-caret-position="629">
+          <caret line="405" column="6" selection-start-line="405" selection-start-column="6" selection-end-line="405" selection-end-column="6" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="166" column="66" lean-forward="true" selection-start-line="166" selection-start-column="66" selection-end-line="166" selection-end-column="66" />
         </state>
       </provider>
     </entry>

@@ -140,8 +140,8 @@ namespace CGL
         //vertices
         v0 -> halfedge() = h2;
         v1 -> halfedge() = h5;
-        v2 -> halfedge() = h3;
-        v3 -> halfedge() = h0;
+        v2 -> halfedge() = h1;
+        v3 -> halfedge() = h4;
 
         //handle edges.
         e0 -> halfedge() = h0;
@@ -194,10 +194,13 @@ namespace CGL
           //new edges
           EdgeIter e3 = newEdge();
           EdgeIter e4 = newEdge();
+          e3 -> isNew = true;
+          e4 -> isNew = true;
 
           //new vertices
           VertexIter v3 = newVertex();
           v3 -> position = (v0 -> position + v2 -> position) / 2; //average the neighbor vertices
+          v3 -> isNew = true;
 
           //new faces
           FaceIter f1 = newFace();
@@ -279,11 +282,15 @@ namespace CGL
           VertexIter v4 = newVertex();
           //set the position of newly added vertex
           v4 -> position = (v0 -> position + v1 -> position) / 2;
+          v4 -> isNew = true;
 
           //new edges
           EdgeIter e5 = newEdge();
           EdgeIter e6 = newEdge();
           EdgeIter e7 = newEdge();
+          e5 -> isNew = true;
+          e6 -> isNew = true;
+          e7 -> isNew = false;
 
           //new faces
           FaceIter f2 = newFace();
@@ -314,9 +321,9 @@ namespace CGL
 
           //handle changed vertices
           v0->halfedge() = h0;
-          v1->halfedge() = h15;
-          v2->halfedge() = h14;
-          v3->halfedge() = h10;
+          v1->halfedge() = h1;
+          v2->halfedge() = h2;
+          v3->halfedge() = h5;
           v4->halfedge() = h3;
 
           //handle changed edges
@@ -352,27 +359,79 @@ namespace CGL
     // the new mesh based on the values we computed for the original mesh.
 
 
-    // TODO Compute new positions for all the vertices in the input mesh, using the Loop subdivision rule,
-    // TODO and store them in Vertex::newPosition. At this point, we also want to mark each vertex as being
-    // TODO a vertex of the original mesh.
+    // Compute new positions for all the vertices in the input mesh, using the Loop subdivision rule,
+    // and store them in Vertex::newPosition. At this point, we also want to mark each vertex as being
+    // a vertex of the original mesh.
+    for (VertexIter v = mesh.verticesBegin(); v != mesh.verticesEnd(); v++) {
+        v -> isNew = false; // mark all the old vertices in the mesh as false.
+        averagePosition(v); // averaged the position of this vertex
+    }
 
 
-    // TODO Next, compute the updated vertex positions associated with edges, and store it in Edge::newPosition.
+    // Next, compute the updated vertex positions associated with edges, and store it in Edge::newPosition.
+    for (EdgeIter e = mesh.edgesBegin(); e != mesh.edgesEnd(); e++) {
+        e -> isNew = false;
+        newVerticesPosition(e);
+    }
 
+    // Next, we're going to split every edge in the mesh, in any order.  For future
+    // reference, we're also going to store some information about which subdivided
+    // edges come from splitting an edge in the original mesh, and which edges are new,
+    // by setting the flat Edge::isNew.  Note that in this loop, we only want to iterate
+    // over edges of the original mesh---otherwise, we'll end up splitting edges that we
+    // just split (and the loop will never end!)
+    Size numOldEdges = mesh.nEdges();
+    int count = 0; //count the number of how many old edges we've gone through.
+    for (EdgeIter e = mesh.edgesBegin(); e != mesh.edgesEnd(); e++) {
+        if (count >= numOldEdges) {
+            break;
+        }
+        mesh.splitEdge(e) -> newPosition = e -> newPosition;
+        count++;
+    }
 
-    // TODO Next, we're going to split every edge in the mesh, in any order.  For future
-    // TODO reference, we're also going to store some information about which subdivided
-    // TODO edges come from splitting an edge in the original mesh, and which edges are new,
-    // TODO by setting the flat Edge::isNew.  Note that in this loop, we only want to iterate
-    // TODO over edges of the original mesh---otherwise, we'll end up splitting edges that we
-    // TODO just split (and the loop will never end!)
+    //Now flip any new edge that connects an old and new vertex.
+    for (EdgeIter e = mesh.edgesBegin(); e != mesh.edgesEnd(); e++) {
+        if (e -> isNew) {
+            HalfedgeIter h = e -> halfedge();
+            if ((h -> vertex() -> isNew && !(h -> twin() -> vertex() -> isNew)) ||
+                (h -> twin() -> vertex() -> isNew && !(h -> vertex() -> isNew))) {
+                mesh.flipEdge(e);
+            }
+        }
+    }
 
-
-    // TODO Now flip any new edge that connects an old and new vertex.
-
-
-    // TODO Finally, copy the new vertex positions into final Vertex::position.
-
+//  // TODO Finally, copy the new vertex positions into final Vertex::position.
+  for (VertexIter v = mesh.verticesBegin(); v != mesh.verticesEnd(); v++) {
+      v -> position = v -> newPosition;
+  }
     return;
+  }
+
+  //Iterate through v's neighboring vertices, return the averaged position by Loop subdivision rule, assigned it to v's
+  //new position.
+  void MeshResampler::averagePosition (VertexIter v) {
+      HalfedgeIter h = v -> halfedge();    // get one of the outgoing halfedges of the vertex
+      Vector3D new_position_sum = Vector3D(0, 0, 0);
+      int n = 0;
+      do {
+          HalfedgeIter h_twin = h -> twin(); // get the vertex of the current halfedge
+          VertexIter n_v = h_twin -> vertex(); // vertex is 'source' of the half edge.
+          new_position_sum += n_v -> position;
+          n++;
+          h = h_twin->next(); // move to the next outgoing halfedge of the vertex.
+      } while(h != v->halfedge());
+      //new_position_sum += v -> position;
+      float u = n == 3 ? 3.0 / 16.0 : 3.0 / (8.0 * (float) n);
+      v -> newPosition = (1 - u * n) * v -> position + u * new_position_sum;
+  }
+
+  void MeshResampler::newVerticesPosition (EdgeIter e) {
+      HalfedgeIter h = e -> halfedge();
+      VertexIter v0 = h -> vertex(); // get the near 4 vertices
+      VertexIter v1 = h -> twin() -> vertex();
+      VertexIter v2 = h -> next() -> next() -> vertex();
+      VertexIter v3 = h -> twin() -> next() -> next() -> vertex();
+      e -> newPosition = (3.0 / 8.0) * (v0 -> position + v1 -> position) + (1.0 / 8.0) * (v2 -> position + v3 -> position);
   }
 }
