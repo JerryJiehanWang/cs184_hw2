@@ -386,7 +386,9 @@ namespace CGL
         if (count >= numOldEdges) {
             break;
         }
-        mesh.splitEdge(e) -> newPosition = e -> newPosition;
+        mesh.splitEdge(e) -> newPosition = e -> newPosition; //assigned the newPosition of the newly created
+                                                            // because when flipped the edge, the new vertex might
+                                                            // point to a new edges, which has no newPosition.
         count++;
     }
 
@@ -421,7 +423,6 @@ namespace CGL
           n++;
           h = h_twin->next(); // move to the next outgoing halfedge of the vertex.
       } while(h != v->halfedge());
-      //new_position_sum += v -> position;
       float u = n == 3 ? 3.0 / 16.0 : 3.0 / (8.0 * (float) n);
       v -> newPosition = (1 - u * n) * v -> position + u * new_position_sum;
   }

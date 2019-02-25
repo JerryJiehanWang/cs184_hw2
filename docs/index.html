@@ -34,7 +34,10 @@
 <div>
 
 <h2 align="middle">Overview</h2>
-<p>Give a high-level overview of what you implemented in this project. Think about what you've built as a whole. Share your thoughts on what interesting things you've learned from completing the project.</p>
+<p>In this project, I experience mesh geometry by doing some Berier Curves, half edges data structure manipulations,
+ and subdivisions. For a mesh, first the surface is computed to many triangles, then curves are calculated by
+  de Casteljau's algorithm. Then, we implement basic half edge operations, edge flip and split, to support
+subdivision. Subdivisions make the mesh smoother but also requires the computer to do more calculations.</p>
 
 <h2 align="middle">Section I: Bezier Curves and Surfaces</h2>
 
@@ -199,6 +202,138 @@
 
 
 <h3 align="middle">Part 6: Loop subdivision for mesh upsampling</h3>
+      <p>
+        I basically follow the instructions step by step. Here's the following steps.
+      </p>
+      <ul style="list-style-type:circle;">
+        <li>Set all the vertices -> isNew to be false, because they are the old vertices. Calculate their new
+          future position using the formula \((1 - n*u) *\) original_position \(+ u *\) neighbor_position_sum,
+        where \(u = 3 / 16\) if n = 3, and \(u = 3 / (8n)\) for other value of n. I use a helper function
+          void averagePosition (VertexIter v) to do this.</li>
+        <br>
+        <li>Compute the new vertices associate with an old edge using the formula \(3/8 * (A + B) + 1/8 * (C + D)\),
+         where \(A, B\) are connecting vertices and \(C, D\) are the flank vertices of that edge. I use a helper
+        function called void newVerticesPosition(EdgeIter e) to do this. Also label the old edges -> isNew to be false.</li>
+        <br>
+        <li>Split every edges in any order. In order to only split the old edges, I first keep track of the number
+        of old edges, and then iterate through the edges array. Because the newly created edges are been inserted
+        to the back of the array, we keep a counter, and when the counter is greater than the number of old edges,
+         we know we've split every old edges. Additionally, for every newly created vertices by splitting the edges,
+        we need to set its newPosition to be the edge's newPosition we set up in the previous step. We can't do
+        this in the next flipping step, because when you flip edges, the vertices might point to a newly created
+        edges which have no newPoisition set, and this will result in the newly created vertices' position
+        to be \((0, 0, 0)\).</li>
+        <br>
+        <li>
+          Flip those new edges which are connecting to a new and old vertices. I iterate through all the edges. First
+          inspect whether the edge is a new edge. If it's true, I then inspect its two connecting vertices, if one of
+          them is a new vertex and another is a old one, flip this edge.
+        </li>
+        <br>
+        <li>
+          Finally iterate through all the vertices, set their potision to be newPosition.
+        </li>
+      </ul>
+
+      <div align="middle">
+        <table style="width=100%">
+          <tr>
+            <td>
+              <img src="images/torus_u1.png" align="middle" width="400px"/>
+              <figcaption align="middle"><i>Subdivision step 0</i></figcaption>
+            </td>
+            <td>
+              <img src="images/torus_u2.png" align="middle" width="400px"/>
+              <figcaption align="middle"><i>Subdivision step 1</i></figcaption>
+            </td>
+          </tr>
+          <br>
+          <tr>
+            <td>
+              <img src="images/torus_u3.png" align="middle" width="400px"/>
+              <figcaption align="middle"><i>Subdivision step 2.</i></figcaption>
+            </td>
+            <td>
+              <img src="images/torus_u4.png" align="middle" width="400px"/>
+              <figcaption align="middle"><i>Subdivision step 3</i></figcaption>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <img src="images/torus_u5.png" align="middle" width="400px"/>
+              <figcaption align="middle"><i>Subdivision step 4</i></figcaption>
+            </td>
+            <td>
+              <img src="images/torus_u6.png" align="middle" width="400px"/>
+              <figcaption align="middle"><i>Subdivision step 5</i></figcaption>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <p>
+        Here we can see that sharp edges and vertices get smoothed, because we averaged out its position by taking
+        the average position of its original position and neighboring vertices positions. In order to counter this,
+        we can pre-splitting the edges connecting to this vertex. It's essentially creating new neighboring vertices
+        closer to that vertex, compare to the original neighboring vertices this vertex has. Thus, when upsampling,
+        this vertex's position will be get less averaged.
+      </p>
+
+      <div align="middle">
+        <table style="width=100%">
+          <tr>
+            <td>
+              <img src="images/cube_nopre.png" align="middle" width="600px"/>
+              <figcaption align="middle"><i>Cube without pre-splitting edges</i></figcaption>
+            </td>
+            <td>
+              <img src="images/cube_nopre_u.png" align="middle" width="600px"/>
+              <figcaption align="middle"><i>Cube without pre-splitting edges, Subdivision 3 levels</i></figcaption>
+            </td>
+          </tr>
+          <br>
+          <tr>
+            <td>
+              <img src="images/cube_pre.png" align="middle" width="600px"/>
+              <figcaption align="middle"><i>Cube with pre-splitting edges.</i></figcaption>
+            </td>
+            <td>
+              <img src="images/cure_pre_u.png" align="middle" width="600px"/>
+              <figcaption align="middle"><i>ube with pre-splitting edges, Subdivision 3 levels.<br/>
+              Notice that this vertex stands more out. (less averaged out)</i>
+              </figcaption>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        The reason why the image becomes asymmetric after several levels of subdivision is that some of the
+        vertices are not perfectly balanced. In other words, different vertices has different distance to its neighboring vertices ,
+         and they might have different numbers of neighboring vertices. Therefore, different vertices will have different new position after sudivisions, result
+        in a asymmetric mesh.
+      </p>
+      <div align=""middle>
+        <img src="images/unbalanced.png" align="middle" width="800px"/>
+        <figcaption align="middle"><i>The vertex has four neighboring vertices, and the highlighted
+          edge's vertex has a different distance than other 3 neighboring vertices.</i></figcaption>
+        <img src="images/balanced.png" align="middle" width="800px"/>
+        <figcaption align="middle"><i>The vertex has three neighboring vertices.</i></figcaption>
+      </div>
+
+      <p>
+        We can eliminate this by pre-splitting the face edges, so that every vertices have same number of
+        neighboring vertices and they have the same distances to each other. Thus, all vertices are perfectly
+        the same. When doing subdivision, the mesh should be symmetric.
+      </p>
+
+      <div align=""middle>
+        <img src="images/face_split.png" align="middle" width="800px"/>
+        <figcaption align="middle"><i>Pre-split every face edges.</i></figcaption>
+        <img src="images/face_split_u.png" align="middle" width="800px"/>
+        <figcaption align="middle"><i>After 4 levels of subdivision, the mesh is symmetric.</i></figcaption>
+      </div>
+
+
 
 <h2 align="middle">Section III: Mesh Competition</h2>
 <p>If you are not participating in the optional mesh competition, don't worry about this section!</p>

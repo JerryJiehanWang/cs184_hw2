@@ -56,14 +56,6 @@ iosfwd
 vector4D.h
 ../CGL/include/CGL/vector4D.h
 
-../CGL/include/CGL/misc.h
-cmath
--
-limits
--
-algorithm
--
-
 ../CGL/include/CGL/osdtext.h
 string
 -
@@ -216,31 +208,11 @@ GL/gl.h
 GL/glu.h
 -
 
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/bezierCurve.cpp
-bezierCurve.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/bezierCurve.h
-CGL/misc.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/CGL/misc.h
-unordered_map
--
-unordered_set
--
-iostream
--
-
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/bezierCurve.h
 CGL/CGL.h
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/CGL/CGL.h
 CGL/renderer.h
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/CGL/renderer.h
-
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/bezierPatch.cpp
-bezierPatch.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/bezierPatch.h
-unordered_map
--
-unordered_set
--
 
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/bezierPatch.h
 CGL/CGL.h
@@ -248,33 +220,9 @@ CGL/CGL.h
 mesh.h
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/mesh.h
 
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/camera.cpp
-camera.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/camera.h
-
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/camera.h
 scene.h
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/scene.h
-
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/collada.cpp
-collada.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/collada.h
-assert.h
--
-map
--
-string
--
-iomanip
--
-fstream
--
-sstream
--
-iostream
--
-algorithm
--
 
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/collada.h
 string
@@ -296,10 +244,6 @@ mesh.h
 material.h
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/material.h
 
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/halfEdgeMesh.cpp
-halfEdgeMesh.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/halfEdgeMesh.h
-
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/halfEdgeMesh.h
 set
 -
@@ -317,10 +261,6 @@ CGL/CGL.h
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/CGL/CGL.h
 mesh.h
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/mesh.h
-
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/light.cpp
-light.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/light.h
 
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/light.h
 scene.h
@@ -344,10 +284,6 @@ shaderUtils.h
 iostream
 -
 
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/material.cpp
-material.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/material.h
-
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/material.h
 scene.h
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/scene.h
@@ -359,10 +295,6 @@ unordered_map
 -
 unordered_set
 -
-
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/mesh.cpp
-mesh.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/mesh.h
 
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/mesh.h
 scene.h
@@ -412,25 +344,11 @@ algorithm
 
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/mutablePriorityQueue.h
 
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/png.cpp
-png.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/png.h
-fstream
--
-sstream
--
-iostream
--
-
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/png.h
 map
 -
 vector
 -
-
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/scene.cpp
-scene.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/scene.h
 
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/scene.h
 string
@@ -477,16 +395,6 @@ bezierPatch.h
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/bezierPatch.h
 bezierCurve.h
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/bezierCurve.h
-
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/texture.cpp
-texture.h
-/Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/texture.h
-assert.h
--
-iostream
--
-algorithm
--
 
 /Users/JerryWang/Desktop/Berkeley/2019 Spring/184/hw/p2-meshedit-JerryJiehanWang/src/texture.h
 CGL/CGL.h
